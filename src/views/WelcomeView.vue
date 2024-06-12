@@ -13,7 +13,7 @@
 </template>
 
 <script setup lang="ts">
-import PikachuSvg from '@/components/utils/PikachuSvg.vue'
+import PikachuSvg from '@/components/utils/svg/PikachuSvg.vue'
 import GButton from '@/components/utils/GButton.vue'
 </script>
 
