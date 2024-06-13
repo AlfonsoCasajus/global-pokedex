@@ -55,7 +55,11 @@ section {
   width: 100%;
 }
 
-h1 {
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 700;
   color: var(--color-title);
   margin: 0;
 }
@@ -71,7 +75,6 @@ button {
   padding: 11px 20px;
   border-radius: 60px;
   border: none;
-  background-color: var(--color-light-red);
   color: #ffffff;
   cursor: pointer;
   font-weight: 700;
