@@ -2,13 +2,19 @@
   <section v-if="!isFetchingPokemons">
     <div class="pokemon-search">
       <GInput
-        :modelValue="pokemonQueryFilter"
+        :model-value="pokemonQueryFilter"
         placeholder="Search..."
         type="text"
         :input-delay="500"
-        @input="(query: string) => (pokemonQueryFilter = query)"
+        autofocus
+        @input="(input: string) => (pokemonQueryFilter = input)"
       />
-      <PokemonsList v-if="filteredPokemons.length" :pokemons-list="filteredPokemons" />
+      <PokemonsList
+        v-if="filteredPokemons.length"
+        :pokemons-list="filteredPokemons"
+        @select="handlePokemonSelection"
+        @toggle-favorite="handleFavorite"
+      />
       <EmptyMsg
         v-else
         message="You look lost on your journey!"
@@ -19,10 +25,14 @@
 
     <footer>
       <span class="all-btn">
-        <GButton :icon="IconList" :active="true">All</GButton>
+        <GButton :icon="IconList" :active="!onlyFavorites" @click="onlyFavorites = false"
+          >All</GButton
+        >
       </span>
       <span>
-        <GButton :icon="IconStarFilled" :active="false">Favorites</GButton>
+        <GButton :icon="IconStarFilled" :active="onlyFavorites" @click="onlyFavorites = true"
+          >Favorites</GButton
+        >
       </span>
     </footer>
 
@@ -52,9 +62,10 @@ import { IconList, IconStarFilled } from '@tabler/icons-vue'
 // Pinia
 import { storeToRefs } from 'pinia'
 import { usePokedexStore } from '@/stores/pokedex'
+import type { FormatedPokemon } from 'Pokedex'
 
 const pokedexStore = usePokedexStore()
-const { pokemonQueryFilter, isFetchingPokemons } = storeToRefs(pokedexStore)
+const { pokemonQueryFilter, isFetchingPokemons, onlyFavorites } = storeToRefs(pokedexStore)
 
 onMounted(() => {
   fetcPokemons()
@@ -65,11 +76,15 @@ const filteredPokemons = computed(() => {
 })
 
 async function fetcPokemons() {
-  try {
-    pokedexStore.fetcPokemons()
-  } catch (err) {
-    console.error('Failed to fetch pokemons: ', err)
-  }
+  await pokedexStore.fetcPokemons()
+}
+
+const handlePokemonSelection = (pokemon: FormatedPokemon) => {
+  console.log('SELECT POKEMON')
+}
+
+const handleFavorite = (pokemon: FormatedPokemon) => {
+  pokedexStore.selectFavoritePokemon(pokemon.name)
 }
 </script>
 

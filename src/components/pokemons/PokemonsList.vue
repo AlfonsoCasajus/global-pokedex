@@ -5,7 +5,9 @@
       :key="index"
       class="pokemon"
       :name="pokemon.name"
-      @click="$emit('select')"
+      :is-favorite="pokemon.isFavorite"
+      @click="$emit('select', pokemon)"
+      @toggle-favorite="$emit('toggle-favorite', pokemon)"
     />
   </div>
 </template>
@@ -15,13 +17,13 @@
 import PokemonRow from '@/components/pokemons/PokemonRow.vue'
 
 // Types
-import type { BasicPokemon } from 'Pokedex'
+import type { FormatedPokemon } from 'Pokedex'
 
 defineProps<{
-  pokemonsList: BasicPokemon[]
+  pokemonsList: FormatedPokemon[]
 }>()
 
-defineEmits(['select'])
+defineEmits(['select', 'toggle-favorite'])
 </script>
 
 <style scoped>

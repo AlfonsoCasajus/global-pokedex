@@ -30,6 +30,7 @@ const handleInput = (input: Event) => {
 
   if (timeoutId) clearTimeout(timeoutId)
 
+  // This may be used to avoid unecessary calls to APIs
   timeoutId = setTimeout(() => {
     emit('input', inputElement.value)
   }, props.inputDelay)
