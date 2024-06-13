@@ -1,8 +1,9 @@
 import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
+import type { BasicPokemon } from 'Pokedex'
 
 export const usePokedexStore = defineStore('pokedex', () => {
-  const pokemons = ref([{ name: 'Sipa' }, { name: 'SI PAP' }, { name: 'APA' }, { name: 'SIA' }])
+  const pokemons = ref<BasicPokemon[]>([])
 
   // Filter pokemons
   const pokemonQueryFilter = ref('')
@@ -12,13 +13,20 @@ export const usePokedexStore = defineStore('pokedex', () => {
       pokemon.name.toLowerCase().includes(pokemonQueryFilter.value.toLowerCase())
     )
   })
+
+  // Fetch pokemons list
   const isFetchingPokemons = ref(false)
   const fetcPokemons = async () => {
     isFetchingPokemons.value = true
 
     try {
-      const response: any = await fetch('https://pokeapi.co/api/v2/pokemon/')
-      console.log('FETCH POKEMONES', response.json())
+      const baseUrl = import.meta.env.VITE_POKEAPI_BASE_URL
+      const response: any = await fetch(`${baseUrl}/pokemon`)
+
+      if (!response.ok) throw new Error('Failed to fetch pokemons')
+
+      const data = await response.json()
+      pokemons.value = [...data.results]
     } catch (err) {
       console.error('Failed to fetch pokemons: ', err)
     } finally {

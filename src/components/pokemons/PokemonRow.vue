@@ -24,9 +24,10 @@ defineProps<{
   border-radius: 5px;
   background-color: #ffffff;
   cursor: pointer;
-  padding: 1rem;
+  padding: 0px 1rem;
 
   .name {
+    text-transform: capitalize;
     color: var(--color-dark);
     font-size: 22px;
   }

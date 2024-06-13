@@ -1,10 +1,11 @@
 <template>
   <div class="list-wrapper">
     <PokemonRow
-      v-for="(pokemon, index) of [...pokemonsList, ...pokemonsList, ...pokemonsList]"
+      v-for="(pokemon, index) of pokemonsList"
       :key="index"
       class="pokemon"
       :name="pokemon.name"
+      @click="$emit('select')"
     />
   </div>
 </template>
@@ -13,9 +14,14 @@
 // Import Components
 import PokemonRow from '@/components/pokemons/PokemonRow.vue'
 
+// Types
+import type { BasicPokemon } from 'Pokedex'
+
 defineProps<{
-  pokemonsList: { name: string }[]
+  pokemonsList: BasicPokemon[]
 }>()
+
+defineEmits(['select'])
 </script>
 
 <style scoped>
