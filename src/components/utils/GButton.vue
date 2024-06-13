@@ -1,40 +1,29 @@
 <template>
-  <button v-bind="$attrs">
-    <component :is="icon" v-if="icon" class="btn-icon" />
+  <button v-bind="$attrs" :class="[{ active: active }]">
+    <component :is="icon" size="22" stroke="3" v-if="icon" class="btn-icon" />
     <div class="slot-wrapper">
       <slot />
     </div>
   </button>
 </template>
 
-<script lang="ts">
-import { defineComponent } from 'vue'
-
-export default defineComponent({
-  props: {
-    icon: {
-      type: Object,
-      required: false,
-      default: () => null
-    }
-  }
+<script setup lang="ts">
+defineProps({
+  icon: { type: Object, required: false, default: null },
+  active: { type: Boolean, required: false, default: true }
 })
 </script>
 
 <style scoped>
 button {
-  .btn-icon {
-    width: 100%;
-    height: 100%;
-    align-self: center;
-    justify-self: center;
-  }
+  min-width: 150px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color--grey);
 
-  .slot-wrapper {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  .btn-icon {
+    margin-right: 11px;
   }
 }
 
@@ -43,5 +32,9 @@ button:disabled {
   cursor: default;
   color: #ffffff;
   opacity: 0.7;
+}
+
+.active {
+  background-color: var(--color-light-red);
 }
 </style>
