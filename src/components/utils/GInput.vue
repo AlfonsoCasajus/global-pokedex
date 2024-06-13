@@ -41,7 +41,7 @@ const handleInput = (input: Event) => {
   width: 100%;
   height: 50px;
   padding-left: 15px;
-  margin-bottom: 50px;
+  margin-bottom: 40px;
   display: flex;
   align-items: center;
   background-color: #ffffff;
@@ -53,6 +53,7 @@ const handleInput = (input: Event) => {
   }
 
   input {
+    width: 100%;
     font-weight: 500;
     font-size: 16px;
     color: var(--color-dark);
