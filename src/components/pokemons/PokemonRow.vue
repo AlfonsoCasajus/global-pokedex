@@ -23,6 +23,7 @@ defineProps<{
   justify-content: space-between;
   border-radius: 5px;
   background-color: #ffffff;
+  cursor: pointer;
   padding: 1rem;
 
   .name {

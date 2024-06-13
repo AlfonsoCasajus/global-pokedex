@@ -54,6 +54,7 @@ const handleInput = (input: Event) => {
 
   input {
     width: 100%;
+    padding-right: 15px;
     font-weight: 500;
     font-size: 16px;
     color: var(--color-dark);
