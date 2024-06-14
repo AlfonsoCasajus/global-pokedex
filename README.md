@@ -1,39 +1,34 @@
-# global-pokedex
 
-This template should help get you started developing with Vue 3 in Vite.
+# Global66
 
-## Recommended IDE Setup
+Prueba tecnica realizada por Alfonso Casajus para Global 66.
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
 
-## Type Support for `.vue` Imports in TS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+## Variables de Entorno
 
-## Customize configuration
+Para facilitar la correccion del challenge decidi no utilizar ninguna variable de entorno. La url de la API (`VITE_POKEAPI_BASE_URL`) se ubico en el store de la Pokedex.
 
-See [Vite Configuration Reference](https://vitejs.dev/config/).
 
-## Project Setup
 
-```sh
-npm install
+## Installación
+
+Tras clonar e instalar las dependencias puede correr el proyecto utilizando npm
+
+```bash
+  npm install
+  npm run dev
 ```
+    
+## Tecnologias Usadas
 
-### Compile and Hot-Reload for Development
+`Vue 3`
+`CSS`
+`Typescript`
+`Tabler Icons`
 
-```sh
-npm run dev
-```
+Debido a que el diseño estaba definido decidi no utilizar ninguna libreria de componentes.
+## Autor
 
-### Type-Check, Compile and Minify for Production
+- [@alfonsoCasajus](https://www.github.com/AlfonsoCasajus)
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```

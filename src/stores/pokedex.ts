@@ -2,6 +2,10 @@ import { computed, ref } from 'vue'
 import { defineStore } from 'pinia'
 import type { DetailedPokemon, BasicPokemon, PokeApiPokemon } from 'Pokedex'
 
+// Deberia ser una variable de entorno pero para facilitar la correccion del challenge
+// Decidi ubicarla en este archivo
+const VITE_POKEAPI_BASE_URL = 'https://pokeapi.co/api/v2'
+
 export const usePokedexStore = defineStore('pokedex', () => {
   const pokemons = ref<PokeApiPokemon[]>([])
 
@@ -32,8 +36,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
     isFetchingPokemons.value = true
 
     try {
-      const baseUrl = import.meta.env.VITE_POKEAPI_BASE_URL
-      const response: any = await fetch(`${baseUrl}/pokemon?limit=100000&offset=0.`)
+      const response: any = await fetch(`${VITE_POKEAPI_BASE_URL}/pokemon?limit=100000&offset=0.`)
 
       if (!response.ok) throw new Error('Failed to fetch pokemons')
 
@@ -52,8 +55,7 @@ export const usePokedexStore = defineStore('pokedex', () => {
   const fetchPokemon = async (pokemonName: string) => {
     isFetchingPokemon.value = true
     try {
-      const baseUrl = import.meta.env.VITE_POKEAPI_BASE_URL
-      const response: any = await fetch(`${baseUrl}/pokemon/${pokemonName}`)
+      const response: any = await fetch(`${VITE_POKEAPI_BASE_URL}/pokemon/${pokemonName}`)
 
       if (!response.ok) throw new Error('Failed to fetch pokemons')
       const { name, height, weight, types, sprites } = await response.json()
