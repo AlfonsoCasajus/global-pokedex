@@ -58,7 +58,6 @@ export const usePokedexStore = defineStore('pokedex', () => {
       if (!response.ok) throw new Error('Failed to fetch pokemons')
       const { name, height, weight, types, sprites } = await response.json()
 
-      console.log(sprites)
       const officialArtWork = sprites.other['official-artwork']?.front_default
 
       selectedPokemon.value = {
