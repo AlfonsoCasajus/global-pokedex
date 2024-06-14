@@ -7,7 +7,7 @@
 
 <script setup lang="ts">
 import { IconStarFilled } from '@tabler/icons-vue'
-import GToggle from '../utils/GToggle.vue'
+import GToggle from '@/components/utils/GToggle.vue'
 
 defineProps({
   name: { type: String, required: true },

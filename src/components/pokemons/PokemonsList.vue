@@ -17,10 +17,10 @@
 import PokemonRow from '@/components/pokemons/PokemonRow.vue'
 
 // Types
-import type { FormatedPokemon } from 'Pokedex'
+import type { BasicPokemon } from 'Pokedex'
 
 defineProps<{
-  pokemonsList: FormatedPokemon[]
+  pokemonsList: BasicPokemon[]
 }>()
 
 defineEmits(['select', 'toggle-favorite'])

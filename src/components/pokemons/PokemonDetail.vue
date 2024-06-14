@@ -1,25 +1,74 @@
 <template>
-  <div>
-    <img width="300px" src="@/assets/images/pokemon_background.png" alt="Pokemon backround image" />
+  <div class="model-displayer">
+    <img
+      width="100%"
+      height="220px"
+      src="@/assets/images/pokemon_background.png"
+      alt="Pokemon background image"
+    />
+    <img class="pokemon-model" :src="pokemon.model_img" alt="Pokemon background image" />
   </div>
-  <div>
-    <span>Name</span>
-    <span>Squirtle</span>
-  </div>
-  <div>
-    <span>Weight</span>
-    <span>20</span>
-  </div>
-  <div>
-    <span>Height</span>
-    <span>18</span>
-  </div>
-  <div>
-    <span>Types</span>
-    <span>Normal, Water</span>
+  <div class="details">
+    <div class="detail">
+      <span class="key">Name:</span>
+      <span class="value">{{ pokemon.name }}</span>
+    </div>
+    <div class="detail">
+      <span class="key">Weight:</span>
+      <span class="value">{{ pokemon.weight }}</span>
+    </div>
+    <div class="detail">
+      <span class="key">Height:</span>
+      <span class="value">{{ pokemon.height }}</span>
+    </div>
+    <div class="detail">
+      <span class="key">Types:</span>
+      <span class="value">{{ pokemon.types.join(', ') }}</span>
+    </div>
   </div>
 </template>
 
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import type { DetailedPokemon } from 'Pokedex'
 
-<style scoped></style>
+defineProps<{
+  pokemon: DetailedPokemon
+}>()
+</script>
+
+<style scoped>
+.model-displayer {
+  position: relative;
+  margin-bottom: 10px;
+
+  .pokemon-model {
+    position: absolute;
+    aspect-ratio: 1/1;
+    width: 180px;
+    left: calc(50% - 90px);
+    top: 20px;
+  }
+}
+
+.details {
+  padding: 0 30px;
+
+  .detail {
+    padding: 10px 0;
+    color: var(--color-light-dark);
+    font-size: 18px;
+    line-height: 27px;
+    text-transform: capitalize;
+    border-bottom: solid 1px var(--color--light-grey);
+
+    .key {
+      font-weight: 700;
+      margin-right: 0.5rem;
+    }
+
+    .value {
+      font-weight: 500;
+    }
+  }
+}
+</style>

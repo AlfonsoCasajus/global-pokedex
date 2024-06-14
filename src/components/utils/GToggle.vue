@@ -27,5 +27,6 @@ defineEmits(['select'])
   justify-content: center;
   border-radius: 50%;
   background-color: var(--color-off-white);
+  cursor: pointer;
 }
 </style>
