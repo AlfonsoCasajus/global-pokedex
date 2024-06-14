@@ -24,7 +24,12 @@
             <GToggle
               :icon="IconStarFilled"
               :active="selectedPokemon.isFavorite"
-              @click="() => handleFavorite(selectedPokemon.name)"
+              @click="
+                () => {
+                  if (!selectedPokemon) return
+                  handleFavorite(selectedPokemon.name)
+                }
+              "
             />
           </div>
         </div>

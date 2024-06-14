@@ -83,6 +83,10 @@ export const usePokedexStore = defineStore('pokedex', () => {
 
     if (pokemonIndex < 0) favoritePokemons.value.push(pokemonName)
     else favoritePokemons.value.splice(pokemonIndex, 1)
+
+    if (selectedPokemon.value?.name === pokemonName) {
+      selectedPokemon.value.isFavorite = pokemonIndex < 0
+    }
   }
 
   return {
